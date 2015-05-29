@@ -1,0 +1,123 @@
+@keyframes scaleOut {
+  from {
+  	transform: scale(1);
+  }
+  to {
+  	transform: scale(0.9);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+  	transform: scale(0.9);
+  }
+  to {
+  	transform: scale(1);
+  }
+}
+
+@mixin mb-animation-play-state () {
+	.mb-visible-add,
+	#{&}-add,
+	&.ng-enter {
+		animation-play-state: paused;
+
+		.mb-visible-add-active,
+		&#{&}-add-active,
+		&.ng-enter-active {
+			animation-play-state: running;
+		}
+	}
+
+	.mb-hidden-add,
+	#{&}-remove,
+	&.ng-leave {
+		animation-play-state: paused;
+
+		.mb-hidden-add-active,
+		&#{&}-remove-active,
+		&.ng-leave-active {
+			animation-play-state: running;
+		}
+	}
+
+	&.ng-enter {
+		visibility: hidden;
+		&.ng-enter-active {
+			visibility: visible;
+		}
+	}
+}
+
+@mixin mb-animation-in ($animation-name) {
+	&.mb-hidden-remove,
+	&.ng-hide-remove,
+	&.ng-move,
+	&.ng-enter {
+		animation-name: $animation-name;
+	}
+}
+
+@mixin mb-animation-out ($animation-name) {
+	&.mb-hidden-add,
+	&.ng-hide-add,
+	&.ng-leave {
+		animation-name: $animation-name;
+	}
+}
+
+.mb-slide-in-right {	
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-in(slideInRight);
+}
+
+.mb-slide-out-left {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-out(slideOutLeft);
+}
+
+.mb-slide-in-left {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-in(slideInLeft);
+}
+
+.mb-slide-in-up {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-in(slideInUp);
+}
+
+.mb-slide-out-up {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-out(slideOutUp);
+}
+
+.mb-slide-out-down {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-out(slideOutDown);
+}
+
+.mb-zoom-in {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-in(zoomIn);
+}
+
+.mb-zoom-out {
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+	@include mb-animation-play-state();
+	@include mb-animation-out(zoomOut);
+}

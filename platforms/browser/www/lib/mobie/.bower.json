@@ -1,0 +1,37 @@
+{
+  "name": "mobie",
+  "homepage": "git@gitlab.com:mobie/mobie.git",
+  "authors": [
+    "Victor Queiroz <victorcqueirozg@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.3.15",
+    "angular": "~1.3.15",
+    "angular-animate": "~1.3.15",
+    "lodash": "~3.9.3",
+    "node-browser": "~1.0.24",
+    "angular-route": "~1.3.15"
+  },
+  "dependencies": {
+    "normalize.css": "~3.0.3",
+    "bootstrap-css": "~3.3.4"
+  },
+  "_release": "6bd0bbaa35",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6bd0bbaa3551746524c051dcf41c0f84abe4e990"
+  },
+  "_source": "git://github.com/ngmobie/mobie.git",
+  "_target": "*",
+  "_originalSource": "mobie",
+  "_direct": true
+}

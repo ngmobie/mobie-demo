@@ -1,0 +1,25 @@
+.sidenav {
+	width: 80%;
+	height: 100%;
+	z-index: $z-index-sidenav;
+	position: fixed;
+	background-color: $sidenav-bg;
+	transform: translate3d(0,0,0);
+
+	&.mb-hidden {
+		transform: translate3d(-100%,0,0);
+	}
+
+	&.mb-visible {
+		transform: translate3d(0,0,0);
+	}
+
+	.list{
+		.item {
+			a {
+				color: #387ef5;
+				text-decoration: none;
+			}
+		}
+	}
+}

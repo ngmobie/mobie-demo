@@ -1,0 +1,22 @@
+<div mb-sidenav data-component-id="sidenav-left" class="sidenav" mb-animation="slide-in-left slide-out-left">
+	<div class="bar">
+		<h4 class="title" close-sidenav>Sidenav Left</h4>
+	</div>
+	<ul class="list">
+		<li class="item" close-sidenav>
+			<a ui-sref="app.index">Home</a>
+		</li>
+		<li class="item" close-sidenav>
+			<a ui-sref="app.messages">Messages</a>
+		</li>
+	</ul>
+</div>
+
+<div class="bar" ng-controller="BarController as barCtrl">
+	<h4 class="title">{{ title }}</h4>
+	<button class="button button-bars" ng-click="toggleSidenav()">
+		<i class="icon ion-android-menu"></i>
+	</button>
+</div>
+
+<div ui-view mb-animation="slide-in-right slide-out-left"></div>
