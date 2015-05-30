@@ -3,24 +3,28 @@ var findName = faker.name.findName;
 var namePrefix = faker.name.prefix;
 for(var i=0; i<400; i++) {
 	messages.unshift({
-		name: namePrefix() + ' ' + findName(),
+		author: {
+			name: namePrefix() + ' ' + findName(),
+		},
 		id: i,
 		body: faker.lorem.sentence(10)
 	});
 }
 
+AppController.$inject = ['$scope', '$mbSidenav'];
 function AppController ($scope, $mbSidenav) {
 	$scope.toggleSidenav = function () {
 		return $mbSidenav('sidenav-left').toggle();
 	};
 }
 
+MessagesController.$inject = ['$scope'];
 function MessagesController ($scope) {
 	$scope.messages = messages;
 }
 
-angular.module('mobie-demo-app',['mobie','ngAnimate','ui.router'])
-.factory('$pfBar', function (Helpers) {
+$PfBarFactory.$inject = ['Helpers'];
+function $PfBarFactory (Helpers) {
 	var barTitle = '???';
 	var $pfBar = {};
 	$pfBar.getTitle = function () {
@@ -32,29 +36,19 @@ angular.module('mobie-demo-app',['mobie','ngAnimate','ui.router'])
 		});
 	};
 	return $pfBar;
-})
-.directive('closeSidenav', function (Helpers) {
-	return {
-		require: '?^mbSidenav',
-		link: function (scope, element, attrs, mbSidenav) {
-			if(!mbSidenav) {
-				return;
-			}
+}
 
-			element.on('click', function () {
-				mbSidenav.component.hide();
-			});
-		}
-	};
-})
-.controller('BarController', function ($pfBar, $scope) {
+BarController.$inject = ['$pfBar', '$scope'];
+function BarController ($pfBar, $scope) {
 	$scope.$watch(function () {
 		return $pfBar.getTitle();
 	}, function (barTitle) {
 		$scope.title = barTitle;
 	});
-})
-.directive('title', function ($pfBar) {
+}
+
+TitleDirective.$inject = ['$pfBar'];
+function TitleDirective ($pfBar) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -63,9 +57,21 @@ angular.module('mobie-demo-app',['mobie','ngAnimate','ui.router'])
 			});
 		}
 	};
-})
-.config(['$stateProvider',function ($stateProvider, $urlRouterProvider) {
-	//$urlRouterProvider.otherwise('/app/index');
+}
+
+angular.module('mobie-demo-app',[
+	'ngAnimate',
+	'mobie',
+	'ui.router'
+])
+.factory('$pfBar', $PfBarFactory)
+.controller('BarController', BarController)
+.directive('title', TitleDirective)
+.config([
+	'$stateProvider',
+	'$urlRouterProvider',
+	function ($stateProvider, $urlRouterProvider) {
+	$urlRouterProvider.otherwise('/app/index');
 	$stateProvider
 	.state('app', {
 		url: '/app',
@@ -75,7 +81,10 @@ angular.module('mobie-demo-app',['mobie','ngAnimate','ui.router'])
 	})
 	.state('app.index', {
 		url: '/index',
-		templateUrl: 'js/app-index.html'
+		templateUrl: 'js/app-index.html',
+		controller: ['$scope', function ($scope) {
+			$scope.indexText = faker.lorem.sentences(800);
+		}]
 	})
 	.state('app.messages', {
 		url: '/messages',
