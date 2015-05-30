@@ -8,6 +8,13 @@ gulp.task('cordova-prepare-browser', function (done) {
 		done();
 	}
 });
-gulp.task('serve', ['cordova-prepare-browser'], function () {
+
+gulp.task('watch', function () {
+	// Everytime you update your www/ folder
+	// the 'cordova-prepare-browser' task is executed
+	gulp.watch('www/{js,css}/**/*.{js,css}', ['cordova-prepare-browser']);
+});
+
+gulp.task('serve', ['cordova-prepare-browser', 'watch'], function () {
 	require('./');
-}); 
+});

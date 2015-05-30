@@ -24,14 +24,13 @@
     "normalize.css": "~3.0.3",
     "bootstrap-css": "~3.3.4"
   },
-  "_release": "6bd0bbaa35",
+  "_release": "1d61a7fe48",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "6bd0bbaa3551746524c051dcf41c0f84abe4e990"
+    "commit": "1d61a7fe4824fee1eb3428b6462b926915150231"
   },
   "_source": "git://github.com/ngmobie/mobie.git",
   "_target": "*",
-  "_originalSource": "mobie",
-  "_direct": true
+  "_originalSource": "mobie"
 }
