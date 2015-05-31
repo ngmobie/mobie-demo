@@ -1,15 +1,15 @@
-function getRandomThumbnail() {
-	var count = 0,
-	    randomKey;
-
-	_(faker.image).forEach(function (value, key) {
-	  if(Math.random() < (1 / ++count)) {
-	    randomKey = key;
-	  }
-	})
-	.value();
-
-	return faker.image[randomKey]();
+var thumbnails = [
+	'img/thumbnail1.jpg',
+	'img/thumbnail2.jpg',
+	'img/thumbnail3.jpg',
+	'img/thumbnail4.jpg'
+];
+var avatars = [
+	'img/avatar1.jpg',
+	'img/avatar2.jpg'
+];
+function getRandom(arr) {
+	return arr[Math.floor(Math.random()*arr.length)];
 }
 
 var messages = [];
@@ -19,7 +19,7 @@ for(var i=0; i<400; i++) {
 	messages.unshift({
 		author: {
 			name: findName(),
-			avatarUrl: faker.internet.avatar()
+			avatarUrl: getRandom(avatars)
 		},
 		id: i,
 		body: faker.lorem.sentence(10),
@@ -29,7 +29,7 @@ for(var i=0; i<400; i++) {
 messages = _(messages)
 .mapValues(function (value, key) {
 	value.createdAt = moment(value.createdAt).fromNow();
-	value.thumbnailUrl = getRandomThumbnail();
+	value.thumbnailUrl = getRandom(thumbnails);
 	return value;
 })
 .value();
