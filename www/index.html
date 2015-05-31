@@ -17,11 +17,12 @@
 	specific language governing permissions and limitations
 	under the License.
 -->
-<html ng-app="mobie-demo-app">
+<html ng-app="mobie-demo-app" ng-csp ng-strict-di>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; media-src *">
 		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 		<link rel="stylesheet" type="text/css" href="lib/ionicons/css/ionicons.min.css">
@@ -33,12 +34,15 @@
 		<div ui-view></div>
 
 		<script src="cordova.js"></script>
+		<script src="lib/moment/moment.js"></script>
 		<script src="lib/lodash/lodash.min.js"></script>
 		<script src="lib/angular/angular.js"></script>
 		<script src="lib/angular-animate/angular-animate.js"></script>
 		<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="lib/mobie/build/mobie.js"></script>
 		<script src="lib/mobie/build/mobie.tpl.js"></script>
+		<script src="lib/mobie-ui-router-history/dist/mobie-ui-router-history.js"></script>
+		<script src="lib/ui-router-history/dist/ui-router-history.js"></script>
 		<script src="lib/Faker/build/build/faker.min.js"></script>
 		<script src="js/app.js"></script>
 	</body>

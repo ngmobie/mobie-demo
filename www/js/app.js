@@ -1,15 +1,38 @@
+function getRandomThumbnail() {
+	var count = 0,
+	    randomKey;
+
+	_(faker.image).forEach(function (value, key) {
+	  if(Math.random() < (1 / ++count)) {
+	    randomKey = key;
+	  }
+	})
+	.value();
+
+	return faker.image[randomKey]();
+}
+
 var messages = [];
 var findName = faker.name.findName;
 var namePrefix = faker.name.prefix;
 for(var i=0; i<400; i++) {
 	messages.unshift({
 		author: {
-			name: namePrefix() + ' ' + findName(),
+			name: findName(),
+			avatarUrl: faker.internet.avatar()
 		},
 		id: i,
-		body: faker.lorem.sentence(10)
+		body: faker.lorem.sentence(10),
+		createdAt: faker.date.past()
 	});
 }
+messages = _(messages)
+.mapValues(function (value, key) {
+	value.createdAt = moment(value.createdAt).fromNow();
+	value.thumbnailUrl = getRandomThumbnail();
+	return value;
+})
+.value();
 
 AppController.$inject = ['$scope', '$mbSidenav'];
 function AppController ($scope, $mbSidenav) {
@@ -59,10 +82,16 @@ function TitleDirective ($pfBar) {
 	};
 }
 
+MessageController.$inject = ['$scope', 'message'];
+function MessageController ($scope, message) {
+	$scope.message = message;
+}
+
 angular.module('mobie-demo-app',[
 	'ngAnimate',
 	'mobie',
-	'ui.router'
+	'ui.router',
+	'mobie-ui-router-history'
 ])
 .factory('$pfBar', $PfBarFactory)
 .controller('BarController', BarController)
@@ -90,5 +119,17 @@ angular.module('mobie-demo-app',[
 		url: '/messages',
 		templateUrl: 'js/app-messages.html',
 		controller: MessagesController
+	})
+	.state('app.message', {
+		url: '/message/{messageId}',
+		templateUrl: 'js/app-message-detail.html',
+		controller: MessageController,
+		resolve: {
+			message: ['$stateParams', function ($stateParams) {
+				return _(messages).filter(function (message) {
+					return message.id === Number($stateParams.messageId);
+				}).first();
+			}]
+		}
 	});
 }]);
