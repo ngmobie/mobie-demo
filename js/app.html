@@ -1,19 +1,23 @@
 <div mb-sidenav data-component-id="sidenav-left" class="sidenav" mb-animation="slide-in-left slide-out-left">
 	<div class="bar">
-		<h4 class="title" close-sidenav>Sidenav Left</h4>
+		<h4 class="title" mb-close>Sidenav Left</h4>
 	</div>
 	<ul class="list">
-		<li class="item" close-sidenav>
+		<li class="item" mb-close>
 			<a ui-sref="app.index">Home</a>
 		</li>
-		<li class="item" close-sidenav>
+		<li class="item" mb-close>
 			<a ui-sref="app.messages">Messages</a>
 		</li>
 	</ul>
 </div>
 
-<div class="bar" ng-controller="BarController as barCtrl">
+<div class="bar" mb-animation="slide-in-down slide-out-up" ng-controller="BarController as barCtrl" mb-bar-fixed-top>
 	<h4 class="title">{{ title }}</h4>
+	<button mb-back-button class="button button-back">
+	  <i class="icon ion-ios-arrow-back"></i>
+	  <!-- get away from ng-transclude -->
+	</button>
 	<button class="button button-bars" ng-click="toggleSidenav()">
 		<i class="icon ion-android-menu"></i>
 	</button>

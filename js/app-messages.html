@@ -2,8 +2,10 @@
 	<div class="row">
 		<div class="col">
 			<ul class="list">
-				<li class="item" ng-repeat="message in messages">
-					{{message.body}}
+				<li class="item item-avatar" ng-repeat="message in messages" ui-sref="app.message({ messageId: message.id })">
+					<img ng-src="{{message.author.avatarUrl}}">
+					<h2>{{message.author.name}}</h2>
+					<p>{{message.body}}</p>
 				</li>
 			</ul>
 		</div>

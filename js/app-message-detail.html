@@ -1,0 +1,11 @@
+<div class="card" title="{{ message.author.name }}">
+	<div class="item item-avatar">
+		<img ng-src="{{message.author.avatarUrl}}">
+		<h2>{{message.author.name}}</h2>
+		<p>{{message.createdAt}}</p>
+	</div>
+	<div class="item item-body">
+		<img ng-src="{{ message.thumbnailUrl }}" class="full-image">
+		<p>{{ message.body }}</p>
+	</div>
+</div>

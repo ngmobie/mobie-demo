@@ -1,6 +1,41 @@
 .button.button-bars {
-    line-height: 0;
+	line-height: 0;
 }
 button .icon {
-    font-size: 200%;
+	font-size: 200%;
+}
+.mb-fixed-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+.mb-fixed-top+[ui-view] {
+	padding-top: 40px;
+}
+
+.item-body p {
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.button.button-back {
+/* for we are using ionicons */
+	line-height: 0;
+	padding-top: 2.5px;
+	padding-left: 8px;
+
+	/* cool style here */
+	border-color: rgb(56, 126, 245);
+	transition: 250ms color ease-in-out;
+}
+
+.button.button-back:focus {
+	color: #E7E7E7;
+}
+
+.button.button-back:active {
+	color: #E7E7E7;
+	background-color: rgb(56, 126, 245);
+	box-shadow: none;
 }
