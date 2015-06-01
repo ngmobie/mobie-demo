@@ -131,5 +131,9 @@ angular.module('mobie-demo-app',[
 				}).first();
 			}]
 		}
+	})
+	.state('app.settings', {
+		url: '/settings',
+		templateUrl: 'js/app-settings.html'
 	});
 }]);

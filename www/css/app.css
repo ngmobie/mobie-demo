@@ -11,7 +11,7 @@ button .icon {
 	z-index: 10;
 }
 .mb-fixed-top+[ui-view] {
-	padding-top: 40px;
+	padding-top: 44px;
 }
 
 .item-body p {

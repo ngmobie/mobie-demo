@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="mobie.demo.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <feature name="Device">
-        <param name="browser-package" value="Device" />
-    </feature>
     <name>HelloMobie</name>
     <description>
     A sample Apache Cordova application using Mobie and being happy
@@ -14,4 +11,7 @@
     <access origin="*" />
     <access origin="*.amazonaws.com" />
     <allow-navigation href="*" />
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
 </widget>
